@@ -36,6 +36,24 @@ namespace BookMan.Mvc.Controllers
             _service.SaveChanges();
             return RedirectToAction("Index");
         }
-       
+        
+        public IActionResult Edit(int id)
+        {
+            var b = _service.Get(id);
+            if (b == null) return NotFound();
+            else return View(b);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                _service.Update(book);
+                _service.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(book);
+        }
     }
 }
