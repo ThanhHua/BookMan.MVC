@@ -55,5 +55,19 @@ namespace BookMan.Mvc.Controllers
             }
             return View(book);
         }
+
+        public IActionResult Create() => base.View(_service.Create());
+
+        [HttpPost]
+        public IActionResult Create(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                _service.Add(book);
+                _service.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(book);
+        }
     }
 }
