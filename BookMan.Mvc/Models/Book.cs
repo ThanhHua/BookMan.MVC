@@ -16,7 +16,7 @@ namespace BookMan.Mvc.Models
         [Required,Range(1990, int.MaxValue), DisplayName("Năm xuất bản")]
         public int Year { get; set; }
         [DisplayName("Tóm tắt")]
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
         [DisplayName("File")]
         public string DataFile { get; set; }
 
